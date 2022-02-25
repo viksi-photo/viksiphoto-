@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>suwit jawa</title>
+    <style>
+        body {
+            background-image: url(moroccan-flower.png);
+        }
+
+        span {
+            margin: auto;
+        }
+
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .kotak-atas {
+            /* background-color: aqua; */
+            background-image: url(moroccan-flower-dark.png);
+            width: 600px;
+            height: 300px;
+            border: 5px solid white;
+            text-align: center;
+            border-radius: 40px 40px 0 0;
+            background-size: 300px;
+            margin: auto;
+        }
+
+        .kotak-bawah {
+            /* background-color: green; */
+            background-image: url(moroccan-flower-dark.png);
+            width: 600px;
+            height: 300px;
+            text-align: center;
+            border-radius: 0 0 40px 40px;
+            border: 5px solid white;
+            background-size: 300px;
+            margin: auto;
+        }
+
+        .hasil {
+            background-color: white;
+            border: 5px solid rgb(255, 11, 11);
+            position: absolute;
+            /* margin-top: -3%;
+            margin-left: 31%; */
+            text-align: center;
+            border-radius: 20px 20px 20px 20px;
+            width: 100px;
+            height: 40px;
+            font-size: 25px;
+            top: 46%;
+            left: 43%;
+        }
+
+        #hasil {
+            margin: 0 auto;
+            display: inline-block;
+        }
+
+        .kotak-bawah img {
+            margin-left: 20px;
+            margin-right: 20px;
+            transition: 3s;
+        }
+
+        .kotak-bawah img:hover {
+            filter: drop-shadow(5px 5px 5px black);
+            cursor: pointer;
+        }
+
+        .kotak-atas .komputer {
+            margin: 0 18px;
+            margin-top: 80px;
+        }
+
+        .kotak-bawah .pemain {
+            margin: 0 18px;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="kotak-atas">
+            <img id="komputer" class="komputer" src="orang.png" width="150px">
+        </div>
+
+        <div class="kotak-bawah">
+            <img id="orang" class="pemain" src="orang.png" width="150px">
+            <img id="gajah" class="pemain" src="gajah.png" width="150px">
+            <img id="semut" class="pemain" src="semut.png" width="150px">
+        </div>
+        <div class="hasil">
+            <span id="hasil">game</span>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script>
+        $('.pemain').click(function () {
+            let pilihan = $(this).attr('id');
+            console.log(pilihan);
+            let bot = Math.random();
+            let pilihan_bot = '';
+
+            if (bot >= 0 && bot <= 0.3) {
+                pilihan_bot = 'gajah';
+            } else if (bot >= 0.3 && bot <= 0.7) {
+                pilihan_bot = 'orang'
+
+            } else {
+                pilihan_bot = 'semut'
+            }
+
+
+            console.log(pilihan_bot);
+
+
+
+            let hasil = '';
+            if (pilihan == 'gajah') {
+                if (pilihan_bot == 'gajah') {
+                    hasil = 'seri';
+                } else if (pilihan_bot == 'orang') {
+                    hasil = ' kalah ';
+                } else {
+                    hasil = 'menang';
+                }
+            } else if (pilihan == 'orang')
+                if (pilihan_bot == 'orang') {
+                    hasil = 'seri';
+                } else if (pilihan_bot == 'semut') {
+                hasil = 'menang ';
+            } else {
+                hasil = 'kalah';
+            }
+            if (pilihan == 'semut')
+                if (pilihan_bot == 'semut') {
+                    hasil = 'seri';
+                } else if (pilihan_bot == 'gajah') {
+                hasil = ' menang';
+            } else {
+                hasil = 'kalah';
+            }
+
+            console.log(hasil);
+            $('#hasil').text(hasil);
+
+            $('#komputer').attr('src', pilihan_bot + '.png')
+
+            //proses putar  
+            let random
+
+        });
+    </script>
+</body>
+
+</html>
